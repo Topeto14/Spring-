@@ -12,7 +12,7 @@ jobs:
     
     defaults:
       run:
-        working-directory: Spring-apiEjemplo2026
+        working-directory: Spring-/apiEjemplo2026
         
     steps:
       - uses: actions/checkout@v4
