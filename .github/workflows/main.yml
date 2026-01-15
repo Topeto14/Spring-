@@ -12,7 +12,7 @@ jobs:
     
     defaults:
       run:
-        # Esta es la forma correcta de escribir la ruta doble
+        # Usamos la ruta exacta a tu carpeta
         working-directory: ./Spring-/apiEjemplo2026
         
     steps:
