@@ -10,11 +10,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     
-    defaults:
-      run:
-        # Usamos la ruta exacta a tu carpeta
-        working-directory: ./Spring-/apiEjemplo2026
-        
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -27,13 +22,17 @@ jobs:
           cache: 'gradle'
 
       - name: Grant execute permission
-        run: chmod +x gradlew
+        # Usamos GITHUB_WORKSPACE para asegurar la ruta desde la raíz real
+        run: chmod +x "$GITHUB_WORKSPACE/Spring-/apiEjemplo2026/gradlew"
 
       - name: Build with Gradle
-        run: ./gradlew clean bootJar
+        # Entramos a la carpeta y ejecutamos en una sola línea
+        run: |
+          cd "$GITHUB_WORKSPACE/Spring-/apiEjemplo2026"
+          ./gradlew clean bootJar
 
       - name: Upload JAR artifact
         uses: actions/upload-artifact@v4
         with:
           name: spring-app
-          path: Spring-/apiEjemplo2026/build/libs/*.jar
+          path: "**/build/libs/*.jar"
